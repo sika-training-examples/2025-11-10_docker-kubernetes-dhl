@@ -29,3 +29,22 @@ ARCH=x86_64    # or arm64, x86_64, armv6, i386, s390x
 curl -sL "https://github.com/google/go-containerregistry/releases/download/${VERSION}/go-containerregistry_${OS}_${ARCH}.tar.gz" > go-containerregistry.tar.gz
 tar -zxvf go-containerregistry.tar.gz -C /usr/local/bin/ crane
 ```
+
+## Manual multi service example (no docker compose)
+
+Run
+
+```
+docker build -t counter .
+docker network create mynet
+docker run -d --name redis --network mynet redis
+docker run --name counter -d -p 80:80 -e REDIS=redis --net mynet counter
+```
+
+Stop and cleanup
+
+```
+docker stop counter redis
+docker rm counter redis
+docker network rm mynet
+```
