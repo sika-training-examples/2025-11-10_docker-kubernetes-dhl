@@ -48,3 +48,18 @@ docker stop counter redis
 docker rm counter redis
 docker network rm mynet
 ```
+
+## Run this example with docker compose
+
+```
+git clone https://github.com/sika-training-examples/2025-11-10_docker-kubernetes-dhl dhl
+cd dhl
+docker compose up -d
+```
+
+To stop and cleanup
+
+```
+docker compose down
+```
+
