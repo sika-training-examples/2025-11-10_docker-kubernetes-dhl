@@ -63,3 +63,43 @@ To stop and cleanup
 docker compose down
 ```
 
+## Install Kubernetes Tooling
+
+### kubectl
+
+```
+curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /tmp/kubectl && chmod +x /tmp/kubectl && sudo mv /tmp/kubectl /usr/local/bin/kubectl
+```
+
+### helm
+
+```
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+```
+
+### k9s
+
+```
+curl -L https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz -o /tmp/k9s.tar.gz && tar -xzf /tmp/k9s.tar.gz -C /tmp && chmod +x /tmp/k9s && sudo mv /tmp/k9s /usr/local/bin/k9s
+```
+
+### kubectx + kubens
+
+```
+sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+```
+
+### Aliases
+
+```
+echo "alias k=kubectl" >> ~/.zshrc
+echo "alias kn=kubens" >> ~/.zshrc
+echo "alias kx=kubectx" >> ~/.zshrc
+
+echo "source <(kubectl completion zsh)" >> ~/.zshrc
+echo "source <(helm completion zsh)" >> ~/.zshrc
+
+source ~/.zshrc
+```
