@@ -109,3 +109,26 @@ echo "source <(helm completion zsh)" >> ~/.zshrc
 
 source ~/.zshrc
 ```
+
+## Run Training Cluster
+
+```
+docker ps -a -q | xargs -r docker rm -f
+```
+
+```
+k3d cluster create default \
+  --k3s-arg --disable=traefik@server:0 \
+  --servers 1 \
+  --port 80:80@loadbalancer \
+  --port 443:443@loadbalancer \
+  --wait
+```
+
+```
+kubectl create ns training
+```
+
+```
+kubectl config set-context --current --namespace training
+```
