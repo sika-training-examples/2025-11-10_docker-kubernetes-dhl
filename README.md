@@ -163,3 +163,31 @@ watch -n 0.2 kubectl get deploy,po,service
 ```
 kubectl run -ti --rm --image ghcr.io/sikalabs/dev dev
 ```
+
+## Install ingress-nginx controller
+
+```
+helm upgrade --install \
+  ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --create-namespace \
+  --namespace ingress-nginx \
+  --set controller.service.type=ClusterIP \
+  --set controller.ingressClassResource.default=true \
+  --set controller.kind=DaemonSet \
+  --set controller.hostPort.enabled=true \
+  --set controller.metrics.enabled=true \
+  --wait
+```
+
+## Install cert-manager
+
+```
+helm upgrade --install \
+	cert-manager cert-manager \
+	--repo https://charts.jetstack.io \
+	--create-namespace \
+	--namespace cert-manager \
+	--set crds.enabled=true \
+	--wait
+```
