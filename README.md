@@ -139,3 +139,15 @@ kubectl config set-context --current --namespace training
 git clone https://github.com/ondrejsika/kubernetes-training.git kubernetes
 cd kubernetes
 ```
+
+## Run hello_dhl example
+
+```
+kubectl apply -f hello_dhl
+```
+
+## Run Development image (sikalabs/dev) in the cluster
+
+```
+kubectl run -ti --rm --image ghcr.io/sikalabs/dev dev
+```

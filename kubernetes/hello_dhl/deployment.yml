@@ -18,6 +18,11 @@ spec:
           image: ghcr.io/ondrejsika/training-example
           ports:
             - containerPort: 80
+          env:  
+            - name: TEXT
+              value: "Ahoj DHL!"
+            - name: TEXT_SUFFIX
+              value: v2
           resources:
             requests:
               cpu: 10m
