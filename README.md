@@ -146,6 +146,18 @@ cd kubernetes
 kubectl apply -f hello_dhl
 ```
 
+## List Deployments, Pods, Services
+
+```
+kubectl get deploy,po,service
+```
+
+watch
+
+```
+watch -n 0.2 kubectl get deploy,po,service
+```
+
 ## Run Development image (sikalabs/dev) in the cluster
 
 ```
