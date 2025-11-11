@@ -22,7 +22,21 @@ spec:
             - name: REDIS
               value: redis
             - name: EXTRA_TEXT
-              value: "DHL"
+              value: "DHL v5"
+            - name: SLOW_START
+              value: '10'
+          startupProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 1
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 8000
+            failureThreshold: 2
           resources:
             requests:
               cpu: 100m
