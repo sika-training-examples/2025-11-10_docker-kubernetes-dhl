@@ -1,28 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: backend
+  name: redis
 spec:
-  revisionHistoryLimit: 0
-  replicas: 4
+  serviceName: redis
   selector:
     matchLabels:
-      app: backend
+      app: redis
   template:
     metadata:
       labels:
-        app: backend
+        app: redis
     spec:
       containers:
         - name: main
-          image: ttl.sh/dhl/backend
+          image: redis:8
           ports:
-            - containerPort: 8000
-          env:
-            - name: REDIS
-              value: redis
-            - name: EXTRA_TEXT
-              value: "DHL"
+            - containerPort: 6379
           resources:
             requests:
               cpu: 100m
