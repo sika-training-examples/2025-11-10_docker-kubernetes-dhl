@@ -4,7 +4,7 @@ metadata:
   name: hello-dhl
 spec:
   revisionHistoryLimit: 0
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: hello-dhl
@@ -12,7 +12,6 @@ spec:
     metadata:
       labels:
         app: hello-dhl
-        svc: example
     spec:
       containers:
         - name: main
