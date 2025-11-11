@@ -83,6 +83,12 @@ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bas
 curl -L https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz -o /tmp/k9s.tar.gz && tar -xzf /tmp/k9s.tar.gz -C /tmp && chmod +x /tmp/k9s && sudo mv /tmp/k9s /usr/local/bin/k9s
 ```
 
+### k3d
+
+```
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+```
+
 ### kubectx + kubens
 
 ```
