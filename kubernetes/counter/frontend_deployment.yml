@@ -21,6 +21,9 @@ spec:
           env:
             - name: API_ORIGIN
               value: http://backend
+          envFrom:
+            - configMapRef:
+                name: frontend
           resources:
             requests:
               cpu: 100m
