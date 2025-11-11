@@ -132,3 +132,10 @@ kubectl create ns training
 ```
 kubectl config set-context --current --namespace training
 ```
+
+## Clone kubernetes-training repo
+
+```
+git clone https://github.com/ondrejsika/kubernetes-training.git kubernetes
+cd kubernetes
+```
