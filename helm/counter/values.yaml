@@ -1,0 +1,6 @@
+# Required
+host:
+
+# Optional
+ingressClassName: nginx
+ingressTlsDisable: false
