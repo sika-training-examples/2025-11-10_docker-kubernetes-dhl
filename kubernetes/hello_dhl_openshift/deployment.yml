@@ -4,7 +4,7 @@ metadata:
   name: hello-dhl-openshift
 spec:
   revisionHistoryLimit: 0
-  replicas: 4
+  replicas: 6
   selector:
     matchLabels:
       app: hello-dhl-openshift
