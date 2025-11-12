@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: openshift-default
   rules:
-    - host: hello-dhl-openshift.apps.training.germanywestcentral.aroapp.io
+    - host: ondrejsika-hello-dhl-openshift.apps.training.germanywestcentral.aroapp.io
       http:
         paths:
           - path: /
