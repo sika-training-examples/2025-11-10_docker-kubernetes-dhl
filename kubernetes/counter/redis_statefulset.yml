@@ -25,6 +25,12 @@ spec:
         - name: redis
           persistentVolumeClaim:
             claimName: redis
+      initContainers:
+        - name: slow-start
+          image: busybox
+          command: 
+            - sleep
+            - '20'
       containers:
         - name: main
           image: redis:8

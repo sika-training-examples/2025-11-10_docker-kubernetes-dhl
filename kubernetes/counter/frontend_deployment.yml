@@ -13,6 +13,13 @@ spec:
       labels:
         app: frontend
     spec:
+      initContainers:
+        - name: wait-for-backend
+          image: ghcr.io/sikalabs/slu:v0.94.0
+          command: 
+            - /bin/sh
+            - -c
+            - slu wait-for http200 --url http://backend
       containers:
         - name: main
           image: ttl.sh/dhl/frontend
@@ -21,6 +28,8 @@ spec:
           env:
             - name: API_ORIGIN
               value: http://backend
+            - name: FAIL_ON_ERROR
+              value: "1"
           envFrom:
             - configMapRef:
                 name: frontend
