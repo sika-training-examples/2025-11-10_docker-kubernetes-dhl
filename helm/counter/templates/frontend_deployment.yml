@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{.Release.Name}}-frontend
 spec:
   revisionHistoryLimit: 0
-  replicas: 4
+  replicas: {{ .Values.frontendReplicas }}
   selector:
     matchLabels:
-      app: frontend
+      app: {{.Release.Name}}-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{.Release.Name}}-frontend
     spec:
       initContainers:
         - name: wait-for-backend
@@ -19,7 +19,7 @@ spec:
           command: 
             - /bin/sh
             - -c
-            - slu wait-for http200 --url http://backend
+            - slu wait-for http200 --url http://{{.Release.Name}}-backend
       containers:
         - name: main
           image: ttl.sh/dhl/frontend
@@ -27,12 +27,12 @@ spec:
             - containerPort: 8000
           env:
             - name: API_ORIGIN
-              value: http://backend
+              value: http://{{.Release.Name}}-backend
             - name: FAIL_ON_ERROR
               value: "1"
           envFrom:
             - configMapRef:
-                name: frontend
+                name: {{.Release.Name}}-frontend
           startupProbe:
             httpGet:
               path: /api/livez

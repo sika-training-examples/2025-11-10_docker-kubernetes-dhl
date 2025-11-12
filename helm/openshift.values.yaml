@@ -1,3 +1,0 @@
-host: ondrejsika-counter.apps.training.germanywestcentral.aroapp.io
-ingressClassName: openshift-default
-ingressTlsDisable: true

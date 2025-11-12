@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: {{.Release.Name}}-backend
 spec:
   revisionHistoryLimit: 0
-  replicas: 4
+  replicas: {{ .Values.backendReplicas }}
   selector:
     matchLabels:
-      app: backend
+      app: {{.Release.Name}}-backend
   template:
     metadata:
       labels:
-        app: backend
+        app: {{.Release.Name}}-backend
     spec:
       initContainers:
         - name: wait-for-redis
@@ -19,7 +19,7 @@ spec:
           command: 
             - /bin/sh
             - -c
-            - slu wait-for tcp --address redis:6379
+            - slu wait-for tcp --address {{.Release.Name}}-redis:6379
       containers:
         - name: main
           image: ttl.sh/dhl/backend
@@ -27,11 +27,11 @@ spec:
             - containerPort: 8000
           env:
             - name: REDIS
-              value: redis
+              value: {{.Release.Name}}-redis
             - name: EXTRA_TEXT
-              value: "DHL v7"
+              value: "DHL {{.Values.backendVersion}} ({{ required ".Values.environment is required" .Values.environment}})"
             - name: SLOW_START
-              value: '10'
+              value: '{{ .Values.backendSlowStart }}'
           startupProbe:
             httpGet:
               path: /readyz
