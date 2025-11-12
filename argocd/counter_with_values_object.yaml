@@ -23,6 +23,6 @@ spec:
       valuesObject:
         host: ondrejsika-counter-with-values-object.apps.training.germanywestcentral.aroapp.io
         backendVersion: v1
-        environment: with-values-object
+        environment: with-vo
         ingressClassName: openshift-default
         ingressTlsDisable: true
